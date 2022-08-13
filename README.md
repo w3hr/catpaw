@@ -1,11 +1,11 @@
 <p align="center">
     <h1>catpaw</h1>
-    <h2>some lightweight nice to have utilty set for nodejs/typescript<h2>
+    some lightweight nice to have utilty set for nodejs/typescript
+</p>
 <p>
+<I style="font-size: 22px;">install</I>
 
-# install
-
-## git way
+<b>git way</b>
 
 ```
 git clone https://github.com/w3hr/catpaw.git
@@ -13,13 +13,14 @@ cd catpaw
 npm install
 ```
 
-## npm way
+<b>npm way</b>
 
 `npm i catpaw --save`
+</p>
+<p>
+<I style="font-size: 22px;">info</I>
 
-# info
-
-## example
+<b>example</b>
 
 ```
 import * as paw from 'catpaw';
@@ -34,7 +35,7 @@ if (paw.isUndefinedOrNull(subject)) {
 
 ```
 
-## exported functions
+<b>exported functions</b>
 
 ```
 isUndefined
@@ -54,5 +55,6 @@ sameTypes
 sleepMs
 sleepS
 ```
+</p>
 
 [MIT](LICENSE) licensed.
