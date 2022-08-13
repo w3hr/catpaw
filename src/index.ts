@@ -26,7 +26,7 @@ export const stringCountNeedle = (subject: string, needle: string, ignoreCase = 
         needle = needle.toLowerCase();
     }
     return subject.split(needle).length - 1;
-}
+};
 
 export const sameTypes = (x: unknown, x2: unknown): boolean => getPrototypeString(x) === getPrototypeString(x2);
 
