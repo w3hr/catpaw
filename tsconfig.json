@@ -12,7 +12,9 @@
         "lib": [
             "ES2015",
             "DOM"
-        ]
+        ],
+        "skipLibCheck": true,
+        "incremental": true
     },
     "include": [
         "src"
@@ -20,7 +22,5 @@
     "exclude": [
         "node_modules",
         "**/__tests__/*"
-    ],
-    "skipLibCheck": true,
-    "incremental": true
+    ]
 }
