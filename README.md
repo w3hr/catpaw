@@ -1,6 +1,6 @@
 <p align="center">
     <h1>catpaw</h1>
-    some lightweight nice to have utilty set for nodejs/typescript
+    lightweight nice to have utilty set for nodejs/typescript
 </p>
 <p>
 <I style="font-size: 22px;">install</I>
@@ -56,5 +56,6 @@ sleepMs
 sleepS
 ```
 </p>
+
 
 [MIT](LICENSE) licensed.
