@@ -319,3 +319,25 @@ test('sameTypes', () => {
   expect(paw.sameTypes([], [])).toBe(true);
   expect(paw.sameTypes(() => { }, () => { })).toBe(true);
 });
+
+test('anyUndefinedOrNull', () => {
+  expect(paw.anyUndefinedOrNull([])).toBe(false);
+  expect(paw.anyUndefinedOrNull(['test1', 'test1'])).toBe(false);
+  expect(paw.anyUndefinedOrNull(['test1', 'test1', new SomeTestClass()])).toBe(false);
+  expect(paw.anyUndefinedOrNull([new SomeTestClass()])).toBe(false);
+  expect(paw.anyUndefinedOrNull([() => {}])).toBe(false);
+  expect(paw.anyUndefinedOrNull(["null", "undefined"])).toBe(false);
+  expect(paw.anyUndefinedOrNull(["undefined"])).toBe(false);
+  expect(paw.anyUndefinedOrNull(["null"])).toBe(false);
+  expect(paw.anyUndefinedOrNull([0, 1, 2, 3, 4])).toBe(false);
+  expect(paw.anyUndefinedOrNull([SomeTestClass.someTestFunction])).toBe(false);
+  expect(paw.anyUndefinedOrNull([Object])).toBe(false);
+
+  expect(paw.anyUndefinedOrNull([undefined, null])).toBe(true);
+  expect(paw.anyUndefinedOrNull([undefined, new SomeTestClass()])).toBe(true);
+  expect(paw.anyUndefinedOrNull([1, null])).toBe(true);
+  expect(paw.anyUndefinedOrNull([1, undefined])).toBe(true);
+  expect(paw.anyUndefinedOrNull([Object, undefined])).toBe(true);
+  expect(paw.anyUndefinedOrNull([undefined])).toBe(true);
+  expect(paw.anyUndefinedOrNull([null])).toBe(true);
+});

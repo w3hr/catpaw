@@ -15,7 +15,8 @@ export const isFunction = (x: unknown): boolean => isNotNullOrUndefinedAndProtot
 
 export const isNotEmptyString = (x: string): boolean => isString(x) && x.length > 0;
 export const isNotEmptyArray = <T>(x: Array<T>): boolean => isArray(x) && x.length > 0;
-export const isRealNumber = (x: number) => isNumber(x) && !Number.isNaN(x);
+export const isRealNumber = (x: number) : boolean => isNumber(x) && !Number.isNaN(x);
+export const anyUndefinedOrNull = <T>(x: Array<T>): boolean => x.some(el => isUndefinedOrNull(el));
 
 export const stringCountNeedle = (subject: string, needle: string, ignoreCase = false): number => {
     if (!isNotEmptyString(subject) || !isNotEmptyString(needle) || needle.length > subject.length) {

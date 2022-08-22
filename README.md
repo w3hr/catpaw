@@ -1,6 +1,6 @@
 <p align="center">
     <h1>catpaw</h1>
-    lightweight nice to have utilty set for nodejs/typescript
+    lightweight nice to have zero dependency utilty set for nodejs/typescript
 </p>
 <p>
 <I style="font-size: 22px;">install</I>
@@ -38,22 +38,23 @@ if (paw.isUndefinedOrNull(subject)) {
 <b>exported functions</b>
 
 ```
-isUndefined
-isNull
-isUndefinedOrNull
-isObject
-isBoolean
-isNumber
-isString
-isArray
-isFunction
-isNotEmptyString
-isNotEmptyArray
-isRealNumber
-stringCountNeedle
-sameTypes
-sleepMs
-sleepS
+isUndefined (x: unknown): boolean
+isNull (x: unknown): boolean 
+isUndefinedOrNull (x: unknown): boolean 
+isObject (x: unknown): boolean 
+isBoolean (x: unknown): boolean 
+isNumber (x: unknown): boolean 
+isString (x: unknown): boolean 
+isArray (x: unknown): boolean 
+isFunction (x: unknown): boolean 
+isNotEmptyString (x: string): boolean
+isNotEmptyArray <T>(x: Array<T>): boolean
+isRealNumber (x: number) : boolean
+anyUndefinedOrNull <T>(x: Array<T>): boolean
+stringCountNeedle (subject: string, needle: string, ignoreCase = false): number
+sameTypes (x: unknown, x2: unknown): boolean
+sleepMs (ms: number): Promise<unknown>
+sleepS (ms: number): Promise<unknown>
 ```
 </p>
 
