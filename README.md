@@ -1,28 +1,29 @@
-<p align="center">
-    <h1>catpaw</h1>
-    lightweight nice to have zero dependency utilty set for nodejs/typescript
-</p>
-<p>
-<I style="font-size: 22px;">install</I>
+<h1 align="center">catpaw</h1>
+<p align="center"><img src="./img/catpaw.png" /> </p>
+<p align="center">Lightweight, nice-to-have utility set with zero dependencies for JS/TypeScript.</p>
 
-<b>git way</b>
+## Installation
 
-```
+<b>git</b>
+
+```sh
 git clone https://github.com/w3hr/catpaw.git
 cd catpaw
-npm install
 ```
 
-<b>npm way</b>
+<b>npm</b>
 
-`npm i catpaw --save`
-</p>
-<p>
-<I style="font-size: 22px;">info</I>
+https://www.npmjs.com/package/catpaw
 
-<b>example</b>
-
+```sh
+npm i catpaw
 ```
+
+## Examples
+
+<b>import</b>
+
+```ts
 import * as paw from 'catpaw';
 
 //import { isUndefinedOrNull } from 'catpaw';
@@ -32,12 +33,11 @@ const subject = undefined;
 if (paw.isUndefinedOrNull(subject)) {
     console.log('subject is undefined||null')
 }
-
 ```
 
-<b>exported functions</b>
+## exported functions</b>
 
-```
+```ts
 isUndefined (x: unknown): boolean
 isNull (x: unknown): boolean 
 isUndefinedOrNull (x: unknown): boolean 
@@ -51,6 +51,12 @@ isNotEmptyString (x: string): boolean
 isNotEmptyArray <T>(x: Array<T>): boolean
 isRealNumber (x: number) : boolean
 anyUndefinedOrNull <T>(x: Array<T>): boolean
+isAnyEmpty = (x: any[]): boolean
+isEmpty = (x: any): boolean
+objectKeysOrEmpty = (x: object): string[]
+objectValuesOrEmpty = <T extends Object>(x: T): T[]
+arrayGetElementsByProperty = <T>(arr: T[], prop: keyof T, value: T[keyof T]): T[]
+arrayRemoveElementsByProperty = <T>(arr: T[], prop: keyof T, value: T[keyof T]): []
 stringCountNeedle (subject: string, needle: string, ignoreCase = false): number
 sameTypes (x: unknown, x2: unknown): boolean
 sleepMs (ms: number): Promise<unknown>

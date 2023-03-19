@@ -14,6 +14,22 @@
                 "${workspaceFolder}/lib/**/*.js"
             ],
             "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Jest Tests",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--config", "jestconfig.json",
+                "--runInBand",
+                "--testTimeout=100000000"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "env": {
+                "NODE_ENV": "test"
+            }
         }
     ]
 }

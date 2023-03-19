@@ -1,6 +1,47 @@
 import * as paw from '../src/index';
 
+const testObj1 = {
+  hello: 'world',
+  foo: 'bar'
+}
+
+const testUserObj1 = {
+  name: 'hans',
+  password: 'hans2',
+  email: 'hans@hans.de',
+  groups: [
+    'test1', 'test2'
+  ]
+}
+
+const testUserObj2 = {
+  name: 'gisela',
+  password: 'gisela',
+  email: 'gisela@gisela.de',
+  groups: [
+    'test3', 'test4'
+  ]
+}
+
+const testUserObj3 = {
+  name: 'sabrina',
+  password: 'sabrina',
+  email: 'sabrina@sabrina.de',
+  groups: [
+    'test5', 'test6'
+  ]
+}
+
+const getTestUserArray = (): any => {
+  return [
+    { ...testUserObj1 },
+    { ...testUserObj2 },
+    { ...testUserObj3 },
+  ]
+}
+
 class SomeTestClass {
+
   constructor(public Name: string = "foo") { }
 
   static someTestFunction(): boolean {
@@ -325,13 +366,15 @@ test('anyUndefinedOrNull', () => {
   expect(paw.anyUndefinedOrNull(['test1', 'test1'])).toBe(false);
   expect(paw.anyUndefinedOrNull(['test1', 'test1', new SomeTestClass()])).toBe(false);
   expect(paw.anyUndefinedOrNull([new SomeTestClass()])).toBe(false);
-  expect(paw.anyUndefinedOrNull([() => {}])).toBe(false);
+  expect(paw.anyUndefinedOrNull([() => { }])).toBe(false);
   expect(paw.anyUndefinedOrNull(["null", "undefined"])).toBe(false);
   expect(paw.anyUndefinedOrNull(["undefined"])).toBe(false);
   expect(paw.anyUndefinedOrNull(["null"])).toBe(false);
   expect(paw.anyUndefinedOrNull([0, 1, 2, 3, 4])).toBe(false);
   expect(paw.anyUndefinedOrNull([SomeTestClass.someTestFunction])).toBe(false);
   expect(paw.anyUndefinedOrNull([Object])).toBe(false);
+  expect(paw.anyUndefinedOrNull([[], [], [], [], []])).toBe(false);
+  expect(paw.anyUndefinedOrNull([{}, {}, {}, {}, {}])).toBe(false);
 
   expect(paw.anyUndefinedOrNull([undefined, null])).toBe(true);
   expect(paw.anyUndefinedOrNull([undefined, new SomeTestClass()])).toBe(true);
@@ -340,4 +383,81 @@ test('anyUndefinedOrNull', () => {
   expect(paw.anyUndefinedOrNull([Object, undefined])).toBe(true);
   expect(paw.anyUndefinedOrNull([undefined])).toBe(true);
   expect(paw.anyUndefinedOrNull([null])).toBe(true);
+});
+
+test('isAnyEmpty', () => {
+  expect(paw.isAnyEmpty(['test1', 'test1'])).toBe(false);
+  expect(paw.isAnyEmpty(['test1', 'test1', new SomeTestClass()])).toBe(false);
+  expect(paw.isAnyEmpty([new SomeTestClass()])).toBe(false);
+  expect(paw.isAnyEmpty([() => { }])).toBe(false);
+  expect(paw.isAnyEmpty(["null", "undefined"])).toBe(false);
+  expect(paw.isAnyEmpty(["undefined"])).toBe(false);
+  expect(paw.isAnyEmpty(["null"])).toBe(false);
+  expect(paw.isAnyEmpty([0, 1, 2, 3, 4])).toBe(false);
+  expect(paw.isAnyEmpty([SomeTestClass.someTestFunction])).toBe(false);
+  expect(paw.isAnyEmpty([Object])).toBe(false);
+
+  expect(paw.isAnyEmpty([])).toBe(true);
+  expect(paw.isAnyEmpty([undefined, null])).toBe(true);
+  expect(paw.isAnyEmpty([undefined, new SomeTestClass()])).toBe(true);
+  expect(paw.isAnyEmpty([1, null])).toBe(true);
+  expect(paw.isAnyEmpty([1, undefined])).toBe(true);
+  expect(paw.isAnyEmpty([Object, undefined])).toBe(true);
+  expect(paw.isAnyEmpty([undefined])).toBe(true);
+  expect(paw.isAnyEmpty([null])).toBe(true);
+  expect(paw.isAnyEmpty([[]])).toBe(true);
+  expect(paw.isAnyEmpty([{}])).toBe(true);
+  expect(paw.isAnyEmpty([[], [], [], [], []])).toBe(true);
+  expect(paw.isAnyEmpty([{}, {}, {}, {}, {}])).toBe(true);
+});
+
+test('isEmpty', () => {
+  expect(paw.isEmpty('')).toBe(true);
+  expect(paw.isEmpty(null)).toBe(true);
+  expect(paw.isEmpty(undefined)).toBe(true);
+  expect(paw.isEmpty({})).toBe(true);
+  expect(paw.isEmpty([])).toBe(true);
+
+  expect(paw.isEmpty(true)).toBe(false);
+  expect(paw.isEmpty(false)).toBe(false);
+  expect(paw.isEmpty([0, 1, 2, 3])).toBe(false);
+  expect(paw.isEmpty(['test', 'was'])).toBe(false);
+  expect(paw.isEmpty(1)).toBe(false);
+  expect(paw.isEmpty(true)).toBe(false);
+  expect(paw.isEmpty(() => { })).toBe(false);
+});
+
+test('objectKeysOrEmpty', () => {
+  expect(paw.objectKeysOrEmpty(testObj1)).toStrictEqual(['hello', 'foo']);
+  expect(paw.objectKeysOrEmpty(testUserObj1)).toStrictEqual(['name', 'password', 'email', 'groups']);
+
+  expect(paw.objectKeysOrEmpty(null!)).toStrictEqual([]);
+  expect(paw.objectKeysOrEmpty(undefined!)).toStrictEqual([]);
+  expect(paw.objectKeysOrEmpty((0 as unknown as any))).toStrictEqual([]);
+  expect(paw.objectKeysOrEmpty(('' as unknown as any))).toStrictEqual([]);
+});
+
+test('objectValuesOrEmpty', () => {
+  expect(paw.objectValuesOrEmpty(testObj1)).toStrictEqual(['world', 'bar']);
+  expect(paw.objectValuesOrEmpty(testUserObj1)).toStrictEqual(["hans", "hans2", "hans@hans.de", ["test1", "test2",]]);
+
+  expect(paw.objectValuesOrEmpty(null!)).toStrictEqual([]);
+  expect(paw.objectValuesOrEmpty(undefined!)).toStrictEqual([]);
+  expect(paw.objectValuesOrEmpty((0 as unknown as any))).toStrictEqual([]);
+  expect(paw.objectValuesOrEmpty(('' as unknown as any))).toStrictEqual([]);
+});
+
+test('arrayRemoveElementsByProperty', () => {
+
+  const testar = getTestUserArray();
+  expect(testar).toHaveLength(3);
+
+  const po1 = paw.arrayGetElementsByProperty(testar, 'name', 'hans');
+  expect(po1).toHaveLength(1);
+  expect(po1[0].name).toBe('hans');
+
+  const to1 = paw.arrayRemoveElementsByProperty(testar, 'name', 'hans');
+  expect(testar).toHaveLength(2);
+  expect(to1).toHaveLength(1);
+  expect(to1[0].name).toBe('hans');
 });
