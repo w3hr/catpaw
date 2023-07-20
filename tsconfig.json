@@ -6,7 +6,7 @@
         "outDir": "lib",
         "strict": true,
         "esModuleInterop": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "resolveJsonModule": true,
         "emitDeclarationOnly": false,
         "strictNullChecks": true,
@@ -14,8 +14,7 @@
             "ES2017",
             "DOM"
         ],
-        "skipLibCheck": true,
-        "incremental": true
+        "skipLibCheck": true
     },
     "include": [
         "src"
